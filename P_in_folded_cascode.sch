@@ -1064,7 +1064,7 @@ value="
 
 "
 spice_ignore=false}
-C {devices/code_shown.sym} -550 -2950 0 0 {name=COMMAND_BLOCK1 only_toplevel="false" value=".control
+C {devices/code_shown.sym} -550 -2950 0 0 {name=COMMAND_BLOCK1 only_toplevel="true" value=".control
 save all
 save @m.xm1.msky130_fd_pr__pfet_01v8_lvt[vth]
 save @m.xm1.msky130_fd_pr__pfet_01v8_lvt[id]

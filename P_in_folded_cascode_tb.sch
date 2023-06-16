@@ -110,7 +110,7 @@ C {devices/vcvs.sym} 70 60 2 0 {name=E2 value=1}
 C {devices/lab_pin.sym} 110 20 2 0 {name=l57 sig_type=std_logic lab=GNDA}
 C {devices/lab_pin.sym} 110 -60 2 0 {name=l1 sig_type=std_logic lab=GNDA}
 C {devices/vsource.sym} -530 190 0 0 {name=V2 value=0}
-C {devices/vsource.sym} -530 -150 0 0 {name=V5 value="PULSE 0 0.5 5ns 0 0 5ns"}
+C {devices/vsource.sym} -530 -150 0 0 {name=V5 value="PULSE 0 0.5 1u 0 0 1u"}
 C {devices/lab_pin.sym} -530 260 3 0 {name=l40 sig_type=std_logic lab=0
 }
 C {devices/lab_pin.sym} -530 120 1 0 {name=l41 sig_type=std_logic lab=GNDA}
@@ -125,7 +125,7 @@ C {devices/lab_pin.sym} 180 10 2 0 {name=l5 sig_type=std_logic lab=VOUTP}
 C {devices/code_shown.sym} -1050 -900 0 0 {name=COMMAND_BLOCK1 only_toplevel="false" value=".control
 save all
 
-*tran 1n 2u
+tran 1n 2u
 *op
 *ac dec 100 1 100T
 *setplot new
@@ -146,6 +146,15 @@ let T1_ph  = cph(T1)*180/pi
 *plot T_mag T_ph xlog
 *plot T1_mag T1_ph xlog
 *plot PSRR_mag PSRR_ph xlog
-write P_in_folded_cascode.raw
+write P_in_folded_cascode_tb.raw
 .endc"}
-C {devices/vsource.sym} -430 -110 0 0 {name=V1 value="PULSE 0 -0.5 5ns 0 0 5ns"}
+C {devices/vsource.sym} -430 -110 0 0 {name=V1 value="PULSE 0 -0.5 1u 0 0 1u"}
+C {devices/code.sym} -420 110 0 0 {name=TT_MODELS
+only_toplevel=true
+format="tcleval( @value )"
+value="
+** opencircuitdesign pdks install
+.lib $::SKYWATER_MODELS/sky130.lib.spice ff
+
+"
+spice_ignore=false}

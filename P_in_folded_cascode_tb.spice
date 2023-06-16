@@ -10,8 +10,8 @@ R10 net3 VINN 1 m=1
 E1 net2 GNDA VOUTN GNDA 1
 E2 net4 GNDA VOUTP GNDA 1
 V2 GNDA 0 0
-V5 VINP GNDA PULSE 0 0.5 1u 0 0 1u
-V1 VINN GNDA PULSE 0 -0.5 1u 0 0 1u
+V5 VINP GNDA PULSE 0.4 1 0 1p 1p 50n 100n
+V1 VINN GNDA PULSE 0.4 1 50n 1p 1p 50n 100n
 **** begin user architecture code
 
 .control
@@ -127,8 +127,6 @@ C2 VOUTP net11 1.1p m=1
 V2 GNDA 0 0
 V3 VDDA GNDA 1.8
 V4 VREF GNDA 0.9
-V5 VINP GNDA 0.7 AC 0.5
-V6 VINN GNDA 0.7 AC -0.5
 .save  v(net1)
 .save  v(net2)
 .save  v(voutpf)

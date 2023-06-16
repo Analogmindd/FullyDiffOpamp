@@ -110,7 +110,7 @@ C {devices/vcvs.sym} 70 60 2 0 {name=E2 value=1}
 C {devices/lab_pin.sym} 110 20 2 0 {name=l57 sig_type=std_logic lab=GNDA}
 C {devices/lab_pin.sym} 110 -60 2 0 {name=l1 sig_type=std_logic lab=GNDA}
 C {devices/vsource.sym} -530 190 0 0 {name=V2 value=0}
-C {devices/vsource.sym} -530 -150 0 0 {name=V5 value="PULSE 0 0.5 1u 0 0 1u"}
+C {devices/vsource.sym} -530 -150 0 0 {name=V5 value="PULSE 0.4 1 0 1p 1p 50n 100n"}
 C {devices/lab_pin.sym} -530 260 3 0 {name=l40 sig_type=std_logic lab=0
 }
 C {devices/lab_pin.sym} -530 120 1 0 {name=l41 sig_type=std_logic lab=GNDA}
@@ -148,7 +148,6 @@ let T1_ph  = cph(T1)*180/pi
 *plot PSRR_mag PSRR_ph xlog
 write P_in_folded_cascode_tb.raw
 .endc"}
-C {devices/vsource.sym} -430 -110 0 0 {name=V1 value="PULSE 0 -0.5 1u 0 0 1u"}
 C {devices/code.sym} -420 110 0 0 {name=TT_MODELS
 only_toplevel=true
 format="tcleval( @value )"
@@ -158,3 +157,4 @@ value="
 
 "
 spice_ignore=false}
+C {devices/vsource.sym} -430 -110 0 0 {name=V1 value="PULSE 0.4 1 50n 1p 1p 50n 100n"}

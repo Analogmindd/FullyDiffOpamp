@@ -263,18 +263,6 @@ N 230 -240 230 -200 {
 lab=VREF}
 N 230 -140 230 -100 {
 lab=GNDA}
-N 40 -480 40 -440 {
-lab=GNDA}
-N 40 -580 40 -540 {
-lab=VINP}
-N 140 -480 140 -440 {
-lab=GNDA}
-N 140 -580 140 -540 {
-lab=VINN}
-N 140 -600 140 -580 {
-lab=VINN}
-N 40 -600 40 -580 {
-lab=VINP}
 N 1520 -680 1520 -620 {
 lab=#net12}
 N 1520 -620 1680 -620 {
@@ -962,7 +950,6 @@ C {devices/lab_pin.sym} 2880 -560 0 0 {name=l35 sig_type=std_logic lab=VOUTN}
 C {devices/vsource.sym} 40 -170 0 0 {name=V2 value=0}
 C {devices/vsource.sym} 140 -170 0 0 {name=V3 value=1.8}
 C {devices/vsource.sym} 230 -170 0 0 {name=V4 value=0.9}
-C {devices/vsource.sym} 40 -510 0 0 {name=V5 value="0.7 AC 0.5"}
 C {devices/lab_pin.sym} 40 -100 3 0 {name=l40 sig_type=std_logic lab=0
 }
 C {devices/lab_pin.sym} 40 -240 1 0 {name=l41 sig_type=std_logic lab=GNDA}
@@ -971,11 +958,6 @@ C {devices/lab_pin.sym} 140 -240 1 0 {name=l43 sig_type=std_logic lab=VDDA
 }
 C {devices/lab_pin.sym} 230 -100 3 0 {name=l44 sig_type=std_logic lab=GNDA}
 C {devices/lab_pin.sym} 230 -240 3 1 {name=l45 sig_type=std_logic lab=VREF}
-C {devices/vsource.sym} 140 -510 0 0 {name=V6 value="0.7 AC -0.5"}
-C {devices/lab_pin.sym} 40 -440 3 0 {name=l46 sig_type=std_logic lab=GNDA}
-C {devices/lab_pin.sym} 140 -440 3 0 {name=l47 sig_type=std_logic lab=GNDA}
-C {devices/lab_pin.sym} 40 -600 1 0 {name=l49 sig_type=std_logic lab=VINP}
-C {devices/lab_pin.sym} 140 -600 1 0 {name=l50 sig_type=std_logic lab=VINN}
 C {devices/ngspice_get_value.sym} 2960 -310 0 0 {name=r120 node=v(@m.xm18.msky130_fd_pr__nfet_01v8_lvt[vth])
 descr="vth="}
 C {devices/ngspice_get_value.sym} 3020 -310 0 0 {name=r121 node="i(@m.xm18.msky130_fd_pr__nfet_01v8_lvt[id])"

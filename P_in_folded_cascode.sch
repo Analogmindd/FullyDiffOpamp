@@ -5,8 +5,8 @@ V {}
 S {}
 E {}
 B 2 910 -1430 1710 -1030 {flags=graph
-y1=-180
-y2=180
+y1=-36
+y2=324
 ypos1=0
 ypos2=2
 divy=5
@@ -431,6 +431,14 @@ N 4050 -700 4060 -700 {
 lab=#net15}
 N 3880 -410 3880 -400 {
 lab=VCMFB}
+N 40 -440 40 -400 {
+lab=GNDA}
+N 40 -540 40 -500 {
+lab=VINP}
+N 130 -540 130 -500 {
+lab=VINN}
+N 130 -440 130 -400 {
+lab=GNDA}
 C {sky130_fd_pr/pfet_01v8_lvt.sym} 2130 -730 0 1 {name=M4
 L=0.7
 W=11
@@ -1042,7 +1050,7 @@ only_toplevel=true
 format="tcleval( @value )"
 value="
 ** opencircuitdesign pdks install
-.lib $::SKYWATER_MODELS/sky130.lib.spice ff
+.lib $::SKYWATER_MODELS/sky130.lib.spice ss
 
 "
 spice_ignore=false}
@@ -1557,3 +1565,10 @@ C {devices/ipin.sym} 320 -600 0 0 {name=p21 lab=VINP}
 C {devices/ipin.sym} 320 -570 0 0 {name=p22 lab=VINN}
 C {devices/opin.sym} 310 -540 0 0 {name=p23 lab=VOUTN}
 C {devices/opin.sym} 310 -510 0 0 {name=p24 lab=VOUTP}
+C {devices/vsource.sym} 40 -470 0 0 {name=V1 only_toplevel="true" value="0.7 AC 0.5"}
+C {devices/vsource.sym} 130 -470 0 0 {name=V5 only_toplevel="true" value="0.7 AC -0.5"}
+C {devices/lab_pin.sym} 40 -400 3 0 {name=l37 sig_type=std_logic lab=GNDA}
+C {devices/lab_pin.sym} 40 -540 1 0 {name=l38 sig_type=std_logic lab=VINP
+}
+C {devices/lab_pin.sym} 130 -400 3 0 {name=l39 sig_type=std_logic lab=GNDA}
+C {devices/lab_pin.sym} 130 -540 3 1 {name=l46 sig_type=std_logic lab=VINN}

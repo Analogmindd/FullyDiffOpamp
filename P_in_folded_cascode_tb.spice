@@ -10,14 +10,14 @@ R10 net3 VINN 1 m=1
 E1 net2 GNDA VOUTN GNDA 1
 E2 net4 GNDA VOUTP GNDA 1
 V2 GNDA 0 0
-V5 VINP GNDA PULSE 0 0.5 5ns 0 0 5ns
-V1 VINN GNDA PULSE 0 -0.5 5ns 0 0 5ns
+V5 VINP GNDA PULSE 0.4 1 0 1p 1p 50n 100n
+V1 VINN GNDA PULSE 0.4 1 50n 1p 1p 50n 100n
 **** begin user architecture code
 
 .control
 save all
 
-*tran 1n 2u
+tran 1n 2u
 *op
 *ac dec 100 1 100T
 *setplot new
@@ -38,8 +38,13 @@ let T1_ph  = cph(T1)*180/pi
 *plot T_mag T_ph xlog
 *plot T1_mag T1_ph xlog
 *plot PSRR_mag PSRR_ph xlog
-write P_in_folded_cascode.raw
+write P_in_folded_cascode_tb.raw
 .endc
+
+
+** opencircuitdesign pdks install
+.lib /usr/local/share/pdk/sky130B/libs.tech/ngspice/sky130.lib.spice ff
+
 
 **** end user architecture code
 **.ends
@@ -122,8 +127,6 @@ C2 VOUTP net11 1.1p m=1
 V2 GNDA 0 0
 V3 VDDA GNDA 1.8
 V4 VREF GNDA 0.9
-V5 VINP GNDA 0.7 AC 0.5
-V6 VINN GNDA 0.7 AC -0.5
 .save  v(net1)
 .save  v(net2)
 .save  v(voutpf)
@@ -132,227 +135,6 @@ V6 VINN GNDA 0.7 AC -0.5
 .save  v(net4)
 .save  v(voutn)
 .save  v(voutp)
-**** begin user architecture code
-
-.control
-save all
-save @m.xm1.msky130_fd_pr__pfet_01v8_lvt[vth]
-save @m.xm1.msky130_fd_pr__pfet_01v8_lvt[id]
-save @m.xm1.msky130_fd_pr__pfet_01v8_lvt[gds]
-save @m.xm1.msky130_fd_pr__pfet_01v8_lvt[gm]
-save @m.xm1.msky130_fd_pr__pfet_01v8_lvt[vdsat]
-save @m.xm1.msky130_fd_pr__pfet_01v8_lvt[cgg]
-save @m.xm1.msky130_fd_pr__pfet_01v8_lvt[cgd]
-
-save @m.xm3.msky130_fd_pr__pfet_01v8_lvt[vth]
-save @m.xm3.msky130_fd_pr__pfet_01v8_lvt[id]
-save @m.xm3.msky130_fd_pr__pfet_01v8_lvt[gds]
-save @m.xm3.msky130_fd_pr__pfet_01v8_lvt[gm]
-save @m.xm3.msky130_fd_pr__pfet_01v8_lvt[vdsat]
-save @m.xm3.msky130_fd_pr__pfet_01v8_lvt[cgg]
-save @m.xm3.msky130_fd_pr__pfet_01v8_lvt[cgd]
-
-save @m.xm8.msky130_fd_pr__nfet_01v8_lvt[vth]
-save @m.xm8.msky130_fd_pr__nfet_01v8_lvt[id]
-save @m.xm8.msky130_fd_pr__nfet_01v8_lvt[gds]
-save @m.xm8.msky130_fd_pr__nfet_01v8_lvt[gm]
-save @m.xm8.msky130_fd_pr__nfet_01v8_lvt[vdsat]
-save @m.xm8.msky130_fd_pr__nfet_01v8_lvt[cgg]
-save @m.xm8.msky130_fd_pr__nfet_01v8_lvt[cgd]
-
-save @m.xm9.msky130_fd_pr__nfet_01v8_lvt[vth]
-save @m.xm9.msky130_fd_pr__nfet_01v8_lvt[id]
-save @m.xm9.msky130_fd_pr__nfet_01v8_lvt[gds]
-save @m.xm9.msky130_fd_pr__nfet_01v8_lvt[gm]
-save @m.xm9.msky130_fd_pr__nfet_01v8_lvt[vdsat]
-save @m.xm9.msky130_fd_pr__nfet_01v8_lvt[cgg]
-save @m.xm9.msky130_fd_pr__nfet_01v8_lvt[cgd]
-
-save @m.xm10.msky130_fd_pr__nfet_01v8_lvt[vth]
-save @m.xm10.msky130_fd_pr__nfet_01v8_lvt[id]
-save @m.xm10.msky130_fd_pr__nfet_01v8_lvt[gds]
-save @m.xm10.msky130_fd_pr__nfet_01v8_lvt[gm]
-save @m.xm10.msky130_fd_pr__nfet_01v8_lvt[vdsat]
-save @m.xm10.msky130_fd_pr__nfet_01v8_lvt[cgg]
-save @m.xm10.msky130_fd_pr__nfet_01v8_lvt[cgd]
-
-save @m.xm11.msky130_fd_pr__nfet_01v8_lvt[vth]
-save @m.xm11.msky130_fd_pr__nfet_01v8_lvt[id]
-save @m.xm11.msky130_fd_pr__nfet_01v8_lvt[gds]
-save @m.xm11.msky130_fd_pr__nfet_01v8_lvt[gm]
-save @m.xm11.msky130_fd_pr__nfet_01v8_lvt[vdsat]
-save @m.xm11.msky130_fd_pr__nfet_01v8_lvt[cgg]
-save @m.xm11.msky130_fd_pr__nfet_01v8_lvt[cgd]
-
-save @m.xm13.msky130_fd_pr__nfet_01v8_lvt[vth]
-save @m.xm13.msky130_fd_pr__nfet_01v8_lvt[id]
-save @m.xm13.msky130_fd_pr__nfet_01v8_lvt[gds]
-save @m.xm13.msky130_fd_pr__nfet_01v8_lvt[gm]
-save @m.xm13.msky130_fd_pr__nfet_01v8_lvt[vdsat]
-save @m.xm13.msky130_fd_pr__nfet_01v8_lvt[cgg]
-save @m.xm13.msky130_fd_pr__nfet_01v8_lvt[cgd]
-
-save @m.xm14.msky130_fd_pr__nfet_01v8_lvt[vth]
-save @m.xm14.msky130_fd_pr__nfet_01v8_lvt[id]
-save @m.xm14.msky130_fd_pr__nfet_01v8_lvt[gds]
-save @m.xm14.msky130_fd_pr__nfet_01v8_lvt[gm]
-save @m.xm14.msky130_fd_pr__nfet_01v8_lvt[vdsat]
-save @m.xm14.msky130_fd_pr__nfet_01v8_lvt[cgg]
-save @m.xm14.msky130_fd_pr__nfet_01v8_lvt[cgd]
-
-save @m.xm16.msky130_fd_pr__nfet_01v8_lvt[vth]
-save @m.xm16.msky130_fd_pr__nfet_01v8_lvt[id]
-save @m.xm16.msky130_fd_pr__nfet_01v8_lvt[gds]
-save @m.xm16.msky130_fd_pr__nfet_01v8_lvt[gm]
-save @m.xm16.msky130_fd_pr__nfet_01v8_lvt[vdsat]
-save @m.xm16.msky130_fd_pr__nfet_01v8_lvt[cgg]
-save @m.xm16.msky130_fd_pr__nfet_01v8_lvt[cgd]
-
-save @m.xm17.msky130_fd_pr__nfet_01v8_lvt[vth]
-save @m.xm17.msky130_fd_pr__nfet_01v8_lvt[id]
-save @m.xm17.msky130_fd_pr__nfet_01v8_lvt[gds]
-save @m.xm17.msky130_fd_pr__nfet_01v8_lvt[gm]
-save @m.xm17.msky130_fd_pr__nfet_01v8_lvt[vdsat]
-save @m.xm17.msky130_fd_pr__nfet_01v8_lvt[cgg]
-save @m.xm17.msky130_fd_pr__nfet_01v8_lvt[cgd]
-
-save @m.xm18.msky130_fd_pr__nfet_01v8_lvt[vth]
-save @m.xm18.msky130_fd_pr__nfet_01v8_lvt[id]
-save @m.xm18.msky130_fd_pr__nfet_01v8_lvt[gds]
-save @m.xm18.msky130_fd_pr__nfet_01v8_lvt[gm]
-save @m.xm18.msky130_fd_pr__nfet_01v8_lvt[vdsat]
-save @m.xm18.msky130_fd_pr__nfet_01v8_lvt[cgg]
-save @m.xm18.msky130_fd_pr__nfet_01v8_lvt[cgd]
-
-save @m.xm20.msky130_fd_pr__nfet_01v8_lvt[vth]
-save @m.xm20.msky130_fd_pr__nfet_01v8_lvt[id]
-save @m.xm20.msky130_fd_pr__nfet_01v8_lvt[gds]
-save @m.xm20.msky130_fd_pr__nfet_01v8_lvt[gm]
-save @m.xm20.msky130_fd_pr__nfet_01v8_lvt[vdsat]
-save @m.xm20.msky130_fd_pr__nfet_01v8_lvt[cgg]
-save @m.xm20.msky130_fd_pr__nfet_01v8_lvt[cgd]
-
-save @m.xm22.msky130_fd_pr__nfet_01v8_lvt[vth]
-save @m.xm22.msky130_fd_pr__nfet_01v8_lvt[id]
-save @m.xm22.msky130_fd_pr__nfet_01v8_lvt[gds]
-save @m.xm22.msky130_fd_pr__nfet_01v8_lvt[gm]
-save @m.xm22.msky130_fd_pr__nfet_01v8_lvt[vdsat]
-save @m.xm22.msky130_fd_pr__nfet_01v8_lvt[cgg]
-save @m.xm22.msky130_fd_pr__nfet_01v8_lvt[cgd]
-
-save @m.xm26.msky130_fd_pr__nfet_01v8_lvt[vth]
-save @m.xm26.msky130_fd_pr__nfet_01v8_lvt[id]
-save @m.xm26.msky130_fd_pr__nfet_01v8_lvt[gds]
-save @m.xm26.msky130_fd_pr__nfet_01v8_lvt[gm]
-save @m.xm26.msky130_fd_pr__nfet_01v8_lvt[vdsat]
-save @m.xm26.msky130_fd_pr__nfet_01v8_lvt[cgg]
-save @m.xm26.msky130_fd_pr__nfet_01v8_lvt[cgd]
-
-save @m.xm25.msky130_fd_pr__nfet_01v8_lvt[vth]
-save @m.xm25.msky130_fd_pr__nfet_01v8_lvt[id]
-save @m.xm25.msky130_fd_pr__nfet_01v8_lvt[gds]
-save @m.xm25.msky130_fd_pr__nfet_01v8_lvt[gm]
-save @m.xm25.msky130_fd_pr__nfet_01v8_lvt[vdsat]
-save @m.xm25.msky130_fd_pr__nfet_01v8_lvt[cgg]
-save @m.xm25.msky130_fd_pr__nfet_01v8_lvt[cgd]
-
-save @m.xm28.msky130_fd_pr__pfet_01v8_lvt[vth]
-save @m.xm28.msky130_fd_pr__pfet_01v8_lvt[id]
-save @m.xm28.msky130_fd_pr__pfet_01v8_lvt[gds]
-save @m.xm28.msky130_fd_pr__pfet_01v8_lvt[gm]
-save @m.xm28.msky130_fd_pr__pfet_01v8_lvt[vdsat]
-save @m.xm28.msky130_fd_pr__pfet_01v8_lvt[cgg]
-save @m.xm28.msky130_fd_pr__pfet_01v8_lvt[cgd]
-
-save @m.xm4.msky130_fd_pr__pfet_01v8_lvt[vth]
-save @m.xm4.msky130_fd_pr__pfet_01v8_lvt[id]
-save @m.xm4.msky130_fd_pr__pfet_01v8_lvt[gds]
-save @m.xm4.msky130_fd_pr__pfet_01v8_lvt[gm]
-save @m.xm4.msky130_fd_pr__pfet_01v8_lvt[vdsat]
-save @m.xm4.msky130_fd_pr__pfet_01v8_lvt[cgg]
-save @m.xm4.msky130_fd_pr__pfet_01v8_lvt[cgd]
-
-save @m.xm5.msky130_fd_pr__pfet_01v8_lvt[vth]
-save @m.xm5.msky130_fd_pr__pfet_01v8_lvt[id]
-save @m.xm5.msky130_fd_pr__pfet_01v8_lvt[gds]
-save @m.xm5.msky130_fd_pr__pfet_01v8_lvt[gm]
-save @m.xm5.msky130_fd_pr__pfet_01v8_lvt[vdsat]
-save @m.xm5.msky130_fd_pr__pfet_01v8_lvt[cgg]
-save @m.xm5.msky130_fd_pr__pfet_01v8_lvt[cgd]
-
-save @m.xm6.msky130_fd_pr__pfet_01v8_lvt[vth]
-save @m.xm6.msky130_fd_pr__pfet_01v8_lvt[id]
-save @m.xm6.msky130_fd_pr__pfet_01v8_lvt[gds]
-save @m.xm6.msky130_fd_pr__pfet_01v8_lvt[gm]
-save @m.xm6.msky130_fd_pr__pfet_01v8_lvt[vdsat]
-save @m.xm6.msky130_fd_pr__pfet_01v8_lvt[cgg]
-save @m.xm6.msky130_fd_pr__pfet_01v8_lvt[cgd]
-
-save @m.xm7.msky130_fd_pr__pfet_01v8_lvt[vth]
-save @m.xm7.msky130_fd_pr__pfet_01v8_lvt[id]
-save @m.xm7.msky130_fd_pr__pfet_01v8_lvt[gds]
-save @m.xm7.msky130_fd_pr__pfet_01v8_lvt[gm]
-save @m.xm7.msky130_fd_pr__pfet_01v8_lvt[vdsat]
-save @m.xm7.msky130_fd_pr__pfet_01v8_lvt[cgg]
-save @m.xm7.msky130_fd_pr__pfet_01v8_lvt[cgd]
-
-save @m.xm12.msky130_fd_pr__pfet_01v8_lvt[vth]
-save @m.xm12.msky130_fd_pr__pfet_01v8_lvt[id]
-save @m.xm12.msky130_fd_pr__pfet_01v8_lvt[gds]
-save @m.xm12.msky130_fd_pr__pfet_01v8_lvt[gm]
-save @m.xm12.msky130_fd_pr__pfet_01v8_lvt[vdsat]
-save @m.xm12.msky130_fd_pr__pfet_01v8_lvt[cgg]
-save @m.xm12.msky130_fd_pr__pfet_01v8_lvt[cgd]
-
-save @m.xm15.msky130_fd_pr__pfet_01v8_lvt[vth]
-save @m.xm15.msky130_fd_pr__pfet_01v8_lvt[id]
-save @m.xm15.msky130_fd_pr__pfet_01v8_lvt[gds]
-save @m.xm15.msky130_fd_pr__pfet_01v8_lvt[gm]
-save @m.xm15.msky130_fd_pr__pfet_01v8_lvt[vdsat]
-save @m.xm15.msky130_fd_pr__pfet_01v8_lvt[cgg]
-save @m.xm15.msky130_fd_pr__pfet_01v8_lvt[cgd]
-
-save @m.xm19.msky130_fd_pr__pfet_01v8_lvt[vth]
-save @m.xm19.msky130_fd_pr__pfet_01v8_lvt[id]
-save @m.xm19.msky130_fd_pr__pfet_01v8_lvt[gds]
-save @m.xm19.msky130_fd_pr__pfet_01v8_lvt[gm]
-save @m.xm19.msky130_fd_pr__pfet_01v8_lvt[vdsat]
-save @m.xm19.msky130_fd_pr__pfet_01v8_lvt[cgg]
-save @m.xm19.msky130_fd_pr__pfet_01v8_lvt[cgd]
-
-save @m.xm21.msky130_fd_pr__pfet_01v8_lvt[vth]
-save @m.xm21.msky130_fd_pr__pfet_01v8_lvt[id]
-save @m.xm21.msky130_fd_pr__pfet_01v8_lvt[gds]
-save @m.xm21.msky130_fd_pr__pfet_01v8_lvt[gm]
-save @m.xm21.msky130_fd_pr__pfet_01v8_lvt[vdsat]
-save @m.xm21.msky130_fd_pr__pfet_01v8_lvt[cgg]
-save @m.xm21.msky130_fd_pr__pfet_01v8_lvt[cgd]
-
-*tran 1n 2u
-*op
-ac dec 100 1 100T
-*setplot new
-*let frequency = ac.frequency
-let T = ac.voutp-ac.voutn
-let T_mag = db(T)
-let T_ph  = cph(T)*180/pi
-
-*let T1 = ac.voutpc
-*let PSRR = T/T1
-*let PSRR_mag = db(PSRR)
-*let PSRR_ph  = cph(PSRR)*180/pi
-*let T1_mag = db(T1)
-let T1_ph  = cph(T1)*180/pi
-*let T2 = (ac.outp-ac.outn)/(ac.outp1-ac.outn1)
-*let T2_mag = db(T2)
-*let T2_ph  = cph(T2)*180/pi
-plot T_mag T_ph xlog
-*plot T1_mag T1_ph xlog
-*plot PSRR_mag PSRR_ph xlog
-write P_in_folded_cascode.raw
-.endc
-
-**** end user architecture code
 .save  v(vb3)
 XM1 net12 VB1 VDDA VDDA sky130_fd_pr__pfet_01v8_lvt L=0.7 W=9.5 nf=1 ad='int((nf+1)/2) * W/nf * 0.29'
 + as='int((nf+2)/2) * W/nf * 0.29' pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)'

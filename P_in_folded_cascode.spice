@@ -1,5 +1,9 @@
 ** sch_path: /home/ubuntu/Desktop/Fully Diff Opamp/P_in_folded_cascode.sch
-**.subckt P_in_folded_cascode
+**.subckt P_in_folded_cascode VINP VINN VOUTN VOUTP
+*.ipin VINP
+*.ipin VINN
+*.opin VOUTN
+*.opin VOUTP
 XM4 net1 VCMFB VDDA VDDA sky130_fd_pr__pfet_01v8_lvt L=0.7 W=11 nf=1 ad='int((nf+1)/2) * W/nf * 0.29'
 + as='int((nf+2)/2) * W/nf * 0.29' pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)'
 + nrd='0.29 / W' nrs='0.29 / W' sa=0 sb=0 sd=0 mult=60 m=60

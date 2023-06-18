@@ -5,8 +5,8 @@ V {}
 S {}
 E {}
 B 2 910 -1430 1710 -1030 {flags=graph
-y1=-180
-y2=180
+y1=-36
+y2=324
 ypos1=0
 ypos2=2
 divy=5
@@ -263,18 +263,6 @@ N 230 -240 230 -200 {
 lab=VREF}
 N 230 -140 230 -100 {
 lab=GNDA}
-N 40 -480 40 -440 {
-lab=GNDA}
-N 40 -580 40 -540 {
-lab=VINP}
-N 140 -480 140 -440 {
-lab=GNDA}
-N 140 -580 140 -540 {
-lab=VINN}
-N 140 -600 140 -580 {
-lab=VINN}
-N 40 -600 40 -580 {
-lab=VINP}
 N 1520 -680 1520 -620 {
 lab=#net12}
 N 1520 -620 1680 -620 {
@@ -443,6 +431,14 @@ N 4050 -700 4060 -700 {
 lab=#net15}
 N 3880 -410 3880 -400 {
 lab=VCMFB}
+N 40 -440 40 -400 {
+lab=GNDA}
+N 40 -540 40 -500 {
+lab=VINP}
+N 130 -540 130 -500 {
+lab=VINN}
+N 130 -440 130 -400 {
+lab=GNDA}
 C {sky130_fd_pr/pfet_01v8_lvt.sym} 2130 -730 0 1 {name=M4
 L=0.7
 W=11
@@ -962,7 +958,6 @@ C {devices/lab_pin.sym} 2880 -560 0 0 {name=l35 sig_type=std_logic lab=VOUTN}
 C {devices/vsource.sym} 40 -170 0 0 {name=V2 value=0}
 C {devices/vsource.sym} 140 -170 0 0 {name=V3 value=1.8}
 C {devices/vsource.sym} 230 -170 0 0 {name=V4 value=0.9}
-C {devices/vsource.sym} 40 -510 0 0 {name=V5 value="0.7 AC 0.5"}
 C {devices/lab_pin.sym} 40 -100 3 0 {name=l40 sig_type=std_logic lab=0
 }
 C {devices/lab_pin.sym} 40 -240 1 0 {name=l41 sig_type=std_logic lab=GNDA}
@@ -971,11 +966,6 @@ C {devices/lab_pin.sym} 140 -240 1 0 {name=l43 sig_type=std_logic lab=VDDA
 }
 C {devices/lab_pin.sym} 230 -100 3 0 {name=l44 sig_type=std_logic lab=GNDA}
 C {devices/lab_pin.sym} 230 -240 3 1 {name=l45 sig_type=std_logic lab=VREF}
-C {devices/vsource.sym} 140 -510 0 0 {name=V6 value="0.7 AC -0.5"}
-C {devices/lab_pin.sym} 40 -440 3 0 {name=l46 sig_type=std_logic lab=GNDA}
-C {devices/lab_pin.sym} 140 -440 3 0 {name=l47 sig_type=std_logic lab=GNDA}
-C {devices/lab_pin.sym} 40 -600 1 0 {name=l49 sig_type=std_logic lab=VINP}
-C {devices/lab_pin.sym} 140 -600 1 0 {name=l50 sig_type=std_logic lab=VINN}
 C {devices/ngspice_get_value.sym} 2960 -310 0 0 {name=r120 node=v(@m.xm18.msky130_fd_pr__nfet_01v8_lvt[vth])
 descr="vth="}
 C {devices/ngspice_get_value.sym} 3020 -310 0 0 {name=r121 node="i(@m.xm18.msky130_fd_pr__nfet_01v8_lvt[id])"
@@ -1060,11 +1050,11 @@ only_toplevel=true
 format="tcleval( @value )"
 value="
 ** opencircuitdesign pdks install
-.lib $::SKYWATER_MODELS/sky130.lib.spice ff
+.lib $::SKYWATER_MODELS/sky130.lib.spice ss
 
 "
 spice_ignore=false}
-C {devices/code_shown.sym} -550 -2950 0 0 {name=COMMAND_BLOCK1 only_toplevel="false" value=".control
+C {devices/code_shown.sym} -550 -2950 0 0 {name=COMMAND_BLOCK1 only_toplevel="true" value=".control
 save all
 save @m.xm1.msky130_fd_pr__pfet_01v8_lvt[vth]
 save @m.xm1.msky130_fd_pr__pfet_01v8_lvt[id]
@@ -1575,3 +1565,10 @@ C {devices/ipin.sym} 320 -600 0 0 {name=p21 lab=VINP}
 C {devices/ipin.sym} 320 -570 0 0 {name=p22 lab=VINN}
 C {devices/opin.sym} 310 -540 0 0 {name=p23 lab=VOUTN}
 C {devices/opin.sym} 310 -510 0 0 {name=p24 lab=VOUTP}
+C {devices/vsource.sym} 40 -470 0 0 {name=V1 only_toplevel="true" value="0.7 AC 0.5"}
+C {devices/vsource.sym} 130 -470 0 0 {name=V5 only_toplevel="true" value="0.7 AC -0.5"}
+C {devices/lab_pin.sym} 40 -400 3 0 {name=l37 sig_type=std_logic lab=GNDA}
+C {devices/lab_pin.sym} 40 -540 1 0 {name=l38 sig_type=std_logic lab=VINP
+}
+C {devices/lab_pin.sym} 130 -400 3 0 {name=l39 sig_type=std_logic lab=GNDA}
+C {devices/lab_pin.sym} 130 -540 3 1 {name=l46 sig_type=std_logic lab=VINN}

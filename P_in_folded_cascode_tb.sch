@@ -72,7 +72,20 @@ N -430 -200 -430 -180 {
 lab=VINN}
 N -530 -240 -530 -220 {
 lab=VINP}
-C {P_in_folded_cascode.sym} 10 -20 0 0 {name=x1}
+N -610 220 -610 260 {
+lab=GNDA}
+N -610 120 -610 160 {
+lab=VDDA}
+N -10 -80 -10 -70 {
+lab=VDDA}
+N 10 -70 10 -60 {
+lab=VREF}
+N 0 -70 10 -70 {
+lab=VREF}
+N -460 120 -460 160 {
+lab=VREF}
+N -460 220 -460 260 {
+lab=GNDA}
 C {devices/capa.sym} 220 -120 3 1 {name=C3
 m=1
 value=5p
@@ -158,3 +171,14 @@ value="
 "
 spice_ignore=false}
 C {devices/vsource.sym} -430 -110 0 0 {name=V1 value="PULSE 0.4 1 50n 1p 1p 50n 100n"}
+C {P_in_folded_cascode.sym} 10 -20 0 0 {name=x1}
+C {devices/lab_pin.sym} -10 30 2 0 {name=l6 sig_type=std_logic lab=GNDA}
+C {devices/vsource.sym} -610 190 0 0 {name=V3 only_toplevel="true" value=1.8}
+C {devices/lab_pin.sym} -610 260 3 0 {name=l42 sig_type=std_logic lab=GNDA}
+C {devices/lab_pin.sym} -610 120 1 0 {name=l43 sig_type=std_logic lab=VDDA
+}
+C {devices/lab_pin.sym} -10 -80 2 0 {name=l7 sig_type=std_logic lab=VDDA}
+C {devices/lab_pin.sym} 10 -60 2 0 {name=l8 sig_type=std_logic lab=VREF}
+C {devices/vsource.sym} -460 190 0 0 {name=V4 only_toplevel="true" value=0.9}
+C {devices/lab_pin.sym} -460 260 3 0 {name=l44 sig_type=std_logic lab=GNDA}
+C {devices/lab_pin.sym} -460 120 3 1 {name=l45 sig_type=std_logic lab=VREF}

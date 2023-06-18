@@ -955,9 +955,9 @@ footprint=1206
 device="ceramic capacitor"}
 C {devices/lab_pin.sym} 3240 -550 2 0 {name=l34 sig_type=std_logic lab=VOUTP}
 C {devices/lab_pin.sym} 2880 -560 0 0 {name=l35 sig_type=std_logic lab=VOUTN}
-C {devices/vsource.sym} 40 -170 0 0 {name=V2 value=0}
-C {devices/vsource.sym} 140 -170 0 0 {name=V3 value=1.8}
-C {devices/vsource.sym} 230 -170 0 0 {name=V4 value=0.9}
+C {devices/vsource.sym} 40 -170 0 0 {name=V2 only_toplevel="true" value=0}
+C {devices/vsource.sym} 140 -170 0 0 {name=V3 only_toplevel="true" value=1.8}
+C {devices/vsource.sym} 230 -170 0 0 {name=V4 only_toplevel="true" value=0.9}
 C {devices/lab_pin.sym} 40 -100 3 0 {name=l40 sig_type=std_logic lab=0
 }
 C {devices/lab_pin.sym} 40 -240 1 0 {name=l41 sig_type=std_logic lab=GNDA}
@@ -1572,3 +1572,7 @@ C {devices/lab_pin.sym} 40 -540 1 0 {name=l38 sig_type=std_logic lab=VINP
 }
 C {devices/lab_pin.sym} 130 -400 3 0 {name=l39 sig_type=std_logic lab=GNDA}
 C {devices/lab_pin.sym} 130 -540 3 1 {name=l46 sig_type=std_logic lab=VINN}
+C {devices/ipin.sym} 320 -670 0 0 {name=p25 lab=VDDA}
+C {devices/ipin.sym} 320 -640 0 0 {name=p26 lab=GNDA}
+C {devices/ipin.sym} 320 -700 0 0 {name=p27 lab=VREF
+}

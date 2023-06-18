@@ -1,52 +1,52 @@
-** sch_path: P_in_folded_cascode_tb.sch
-**.subckt P_in_folded_cascode_tb
-C3 VOUTN GNDA 5p m=1
-C4 GNDA VOUTP 5p m=1
-R7 net2 net1 1 m=1
-R8 net1 VINP 1 m=1
-R9 net4 net3 1 m=1
-R10 net3 VINN 1 m=1
-E1 net2 GNDA VOUTN GNDA 1
-E2 net4 GNDA VOUTP GNDA 1
+** sch_path: /home/ubuntu/Desktop/FullyDiffOpamp/P_in_folded_cascode_RR_tb.sch
+**.subckt P_in_folded_cascode_RR_tb
 V2 GNDA 0 0
-V5 VINP GNDA PULSE 0.4 1 0 1p 1p 50n 100n
-V1 VINN GNDA PULSE 0.4 1 50n 1p 1p 50n 100n
-x1 net1 net3 VOUTN VOUTP VDDA GNDA VREF P_in_folded_cascode
+V5 VINP GNDA 0.7
+V1 VINN GNDA 0.7
+x1 net3 net4 VOUTN_BASE VOUTP_BASE VDDA GNDA VREF P_in_folded_cascode
 V3 VDDA GNDA 1.8
 V4 VREF GNDA 0.9
+V6 net3 VINP AC 0.5
+V7 net4 VINN AC -0.5
+x2 VINP VINN VOUTN_PS VOUTP_PS net5 GNDA VREF P_in_folded_cascode
+V8 net5 VDDA AC 1
+x3 VINP VINN VOUTN_CM VOUTP_CM VDDA GNDA net1 P_in_folded_cascode
+V9 net1 VREF AC 1
 **** begin user architecture code
+
+** opencircuitdesign pdks install
+.lib /usr/local/share/pdk/sky130B/libs.tech/ngspice/sky130.lib.spice ss
+
+
 
 .control
 save all
-
-tran 1n 2u
 *op
-*ac dec 100 1 100T
-*setplot new
-*let frequency = ac.frequency
-*let T = ac.voutp-ac.voutn
-*let T_mag = db(T)
-*let T_ph  = cph(T)*180/pi
+ac dec 100 1 100T
+setplot new
+let frequency = ac.frequency
+let T = ac.voutp_base-ac.voutn_base
+let T_mag = db(T)
+let T_ph  = cph(T)*180/pi
 
-*let T1 = ac.voutpc
-*let PSRR = T/T1
-*let PSRR_mag = db(PSRR)
-*let PSRR_ph  = cph(PSRR)*180/pi
-*let T1_mag = db(T1)
+let T1 = ac.voutp_ps
+let PSRR = T/T1
+let PSRR_mag = db(PSRR)
+let PSRR_ph  = cph(PSRR)*180/pi
+let T1_mag = db(T1)
 let T1_ph  = cph(T1)*180/pi
-*let T2 = (ac.outp-ac.outn)/(ac.outp1-ac.outn1)
-*let T2_mag = db(T2)
-*let T2_ph  = cph(T2)*180/pi
-*plot T_mag T_ph xlog
-*plot T1_mag T1_ph xlog
-*plot PSRR_mag PSRR_ph xlog
-write P_in_folded_cascode_tb.raw
+let T2 = (ac.voutp_cm-ac.voutn_cm)
+let T2_mag = db(T2)
+let T2_ph  = cph(T2)*180/pi
+let CMRR = T/T2
+let CMRR_mag = db(CMRR)
+let CMRR_ph = cph(CMRR)*180/pi
+plot T_mag T_ph xlog
+plot T1_mag T1_ph xlog
+plot PSRR_mag PSRR_ph xlog
+plot CMRR_mag CMRR_ph xlog
+write P_in_folded_cascode.raw
 .endc
-
-
-** opencircuitdesign pdks install
-.lib /usr/local/share/pdk/sky130B/libs.tech/ngspice/sky130.lib.spice ff
-
 
 **** end user architecture code
 **.ends

@@ -10,7 +10,7 @@ Every MOSFET in the design has a length of L=0.7um which makes the layout of the
 | ------------------------- | -------------------------- | --------- | --------- | --------- |
 | Gain-Bandwidth Product    | > 200 MHz                  | 216 MHz   | 209 MHz   | 201 MHz   |
 | Gain                      | > 70 dB                    | 78.5 dB   | 78.02 dB  | 77.4 dB   |
-| Phase Margin              | > 60$\degree$              | 62 deg    | 61.35 deg | 61.25 deg |
+| Phase Margin              | > 60 deg                   | 62 deg    | 61.35 deg | 61.25 deg |
 | Settling Time             | < 25 ns                    | 6.78 ns   | 6.9 ns    | 7.12 ns   |
 | Slew Rate                 | > 20 V/us                  |221.7 V/us | 205 V/us  | 198.7 V/us|
 | Differential Output Swing | 1.2 Vpp                    | 1.2 Vpp   | 1.2 Vpp   | 1.2 Vpp   |
